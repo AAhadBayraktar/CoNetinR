@@ -63,7 +63,7 @@ getPval = function(matrix, x.index, y.index, N.rand=1000, method="spearman", ren
     }else if(method == "bray"){
       rand.sim[i] = vegdist(rbind(rand,y),method="bray")
     }else if(method == "kld"){
-      rand.sim[i] = computeKld(rand,y)
+      rand.sim[i] = computeKld(rbind(rand,y))[1, 2]
     }
   }
   rand.sim = na.omit(rand.sim)
@@ -87,7 +87,7 @@ getPval = function(matrix, x.index, y.index, N.rand=1000, method="spearman", ren
       }else if(method == "bray"){
         boot.sim[i] = vegdist(rbind(x.boot,y.boot),method="bray")
       }else if(method == "kld"){
-        boot.sim[i] = computeKld(x.boot,y.boot)
+        boot.sim[i] = computeKld(rbind(x.boot,y.boot))[1, 2]
       }
     }
     boot.sim = na.omit(boot.sim)
